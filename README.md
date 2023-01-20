@@ -1,4 +1,4 @@
-<img src="./nature02.jpeg">
+<img src="./public/images/nature02.jpeg">
 
 ## Rest API with Express Server
 
