@@ -15,4 +15,4 @@ app.use(express.urlencoded({extended : false}) );
 //listen port 
 app.listen(PORT, () => {
     console.log(`server is running on port ${PORT}`.bgGreen.black);
-})
+});
