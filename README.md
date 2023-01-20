@@ -3,7 +3,7 @@
 ## Rest API with Express Server
 
 
-This is our first REST API for React js Apps.
+This is my first REST API for React js App.
 
 ## First clone this repo and then install it's packages
 
