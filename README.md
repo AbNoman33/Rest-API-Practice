@@ -33,3 +33,12 @@ app.listen(PORT, () => {
 });
 
 ```
+
+## Packages
+
+* Express Js
+* Nodemon
+* Colors
+* dotenv
+* multer
+* nodemailer
