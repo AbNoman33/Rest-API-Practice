@@ -8,9 +8,11 @@ This is our first REST API for React js Apps.
 ``` console
 $ npm install 
 ```
+
 ## Server Structure
 
 ```js
+
 const express = require('express');
 const colors = require('colors');
 const dotenv = require('dotenv').config();
@@ -29,4 +31,5 @@ app.use(express.urlencoded({extended : false}) );
 app.listen(PORT, () => {
     console.log(`server is running on port ${PORT}`.bgGreen.black);
 });
+
 ```
