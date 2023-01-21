@@ -46,8 +46,89 @@ const createUser = (req, res) => {
     }
 }
 
+/**
+ * @desc get a single user
+ * @name GET /api/v1/user/:id
+ * @access public
+ */
+
+const singleUser = (req, res) => {
+    // get users data from json db
+    const users = JSON.parse(readFileSync(path.join(__dirname, '../db/users.json')));
+
+    const singleUser = users.find(data => data.id == req.params.id);
+    
+
+    if(singleUser) {
+        res.status(200).json(singleUser);
+    }else {
+        res.status(404).json({
+            message : "Single User not found"
+        })
+    }
+
+    
+}
+
+/**
+ * @desc delete user
+ * @name DELETE /api/v1/delete/:id
+ * @access public
+ */
+const deleteUser = (req, res) => {
+    // get users data from json db
+    const users = JSON.parse(readFileSync(path.join(__dirname, '../db/users.json')));
+
+    
+    if (users.some(data => data.id == req.params.id)) {
+        const data = users.filter(data => data.id != req.params.id);
+        writeFileSync(path.join(__dirname, '../db/users.json'), JSON.stringify(data));
+        res.status(200).json({
+            message : "User deleted Successfully"
+        })
+    }else {
+        res.status(404).json({
+            message : "User not Found"
+        })
+    }
+    
+    
+}
+
+/**
+ * @desc update user
+ * @name PUT/PATCH /api/v1/delete/:id
+ * @access public
+ */
+const updateUser = (req, res) => {
+    // get users data from json db
+    const users = JSON.parse(readFileSync(path.join(__dirname, '../db/users.json')));
+
+    
+    if (users.some(data => data.id == req.params.id)) {
+
+        users[users.findIndex(data => data.id == req.params.id)] = {
+            ...users[users.findIndex(data => data.id == req.params.id)],
+            ...req.body
+        }
+
+        writeFileSync(path.join(__dirname, '../db/users.json'), JSON.stringify(users));
+        res.status(200).json({
+            message : "User updated successfully"
+        })
+            
+    }else {
+        res.status(404).json({
+            message : "User not Found"
+        })
+    } 
+
+}
 //export controllers
 module.exports = {
     getAlluser,
-    createUser
+    createUser,
+    singleUser,
+    deleteUser,
+    updateUser
 }
